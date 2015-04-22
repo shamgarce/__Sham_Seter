@@ -1,5 +1,5 @@
 <?php
-include "Seter/Config.php";
+include "../Seter/Seter.php";
 $Seter = new Seter();               //实例化对象
 
 
@@ -21,6 +21,10 @@ exit;
 
 
 ?>
+
+
+
+
 <!Doctype html>
 <html>
 <head>

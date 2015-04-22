@@ -3,7 +3,7 @@
 /*
  * 加载配置文件
  * */
-include "Seter/Config.php";
+include "Seter/Seter.php";
 /*
  * 对象实例化
  * */
@@ -29,37 +29,3 @@ $Seter['reawd'] = 1234;
 
 //print_r($ar);
 exit;
-
-//* $mongo->ensureIndex("test_table", array("id"=>1), array('unique'=>true));
-//* 获取表的记录
-//* $mongo->count("test_table");
-//*
-
-
-
-
-print_r($rc);
-
-//$this->S->apc->clear();
-//$this->S->apc->clear_all($key);
-//$this->S->apc->exists($key);
-//$this->S->apc->inc("vidd",1);
-//$this->S->apc->dec("vidd",1);
-//$mr =  $this->S->apc->info();
-
-
-echo $Seter->reawd;
-
-
-$t = Seter::T();
-
-
-
-echo '<hr>';
-echo Seter::T()-$t;
-
-
-
-
-
-

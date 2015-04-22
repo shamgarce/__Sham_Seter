@@ -1,8 +1,18 @@
-<?php  if ( ! defined('SHAM_PATH')) exit('No direct script access allowed');
+<?php
+
+//类文件自动加载
+function __Sham__loader($class)
+{
+    $file = __DIR__."/library/$class.php";
+    if (is_file($file)) {
+        require_once($file);
+    }
+}
+spl_autoload_register('__Sham__loader');
+define(SHAM_PATH,__DIR__);  //定义标识常量
 
 /**
- *
- * $S = new Seter();      //集成众多的单例模式//静态函数//程序员们,摇摆吧
+ * $S = new Seter();      //集成众多的单例模式//静态函数
  */
 class Seter implements ArrayAccess, Countable, IteratorAggregate
 {
@@ -20,31 +30,14 @@ class Seter implements ArrayAccess, Countable, IteratorAggregate
     {
         $this->replace($items);
         $this->singleton('db', function ($c) {
-            return new Db();
+            return new Sham_Db();
         });
         $this->singleton('mdb', function ($c) {
-            return new Mdb();
+            return new Sham_Mdb();
         });
-        $this->singleton('apc', function ($c) {
-            return new Apc();
+        $this->singleton('logmon', function ($c) {
+            return new Sham_Logmon();
         });
-
-        $this->singleton('uri', function ($c) {
-            return new Uri();
-        });
-
-//        $this->singleton('logmon', function ($c) {
-//            return new Logmon();
-//        });
-        $this->singleton('mcache', function ($c) {
-//            define('MEMCACHE_HOST', '127.0.0.1');
-//            define('MEMCACHE_PORT', 11211);
-//            define('MEMCACHE_EXPIRATION', 0);
-//            define('MEMCACHE_PREFIX', 'licai');
-//            define('MEMCACHE_COMPRESSION', FALSE);
-            return new Mcache();
-        });
-
     }
 
     /**

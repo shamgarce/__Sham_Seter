@@ -26,36 +26,36 @@ $db->version();
 $db->setMaxCacheTime(0);
 $db->getMaxCacheTime();
 */
-class Db{
+class Sham_Db{
     protected $properties;
     //private $settings = array();
     //下面是单例结构===================================================
     public $link_id     = NULL;
     public $queryCount  = 0;
-    public $retemp      = array();      //临时结果集 gsql的结果集临时存储
+    public $retemp      = array();              //临时结果集 gsql的结果集临时存储
     public $queryTime   = 0;
     public $queryLog    = array();
-    public $max_cache_time = 300; 					// 最大的缓存时间，以秒为单位
-    public $root_path      = 'EasyCache/';    //RHCACHE
-    public $cache_data_dir = 'query_caches/';	//缓存记录
-    public $err_path      	= 'errlog/';			//错误/慢查询 日志
+    public $max_cache_time = 300; 				// 最大的缓存时间，以秒为单位
+    public $root_path      = 'Cache\\';          //RHCACHE
+    public $cache_data_dir = 'query_caches\\';	//缓存记录
+    public $err_path      	= 'errlog\\';		//错误/慢查询 日志
     public $debug      	    = false;
     public $error_message  = array();
-    public $platform       = '';			//操作系统
+    public $platform       = '';			    //操作系统
     public $version        = '';
-    public $dbhash         = '';			//配置缓存文件名
+    public $dbhash         = '';			    //配置缓存文件名
     public $starttime      = 0;
     public $timeline       = 0;
     public $timezone       = 0;
-    public $lifetime       = 0;			    //缓存有效时间,<=0标识关闭
-    public $slowquery      = 0.5;			//慢查询记录时间 超过这个时间,进行记录
+    public $lifetime       = 0;			        //缓存有效时间,<=0标识关闭
+    public $slowquery      = 0.5;			    //慢查询记录时间 超过这个时间,进行记录
     public $mysql_config_cache_file_time = 0;
     public $cache_data  	= '';
     public $cache_data_name= '';
-    public $mysql_disable_cache_tables = array(); 		// 不允许被缓存的表，遇到将不会进行缓存
+    public $mysql_disable_cache_tables = array();// 不允许被缓存的表，遇到将不会进行缓存
     public $base            = '';
 
-    private $props = array();           //单例结构
+    private $props = array();                   //单例结构
     public static $instance;
 
     public function __construct($chr = 'default'){
@@ -67,7 +67,7 @@ class Db{
         include_once($Config_file);           //获得    $mysql_set.
 
         $this->base = dirname(__FILE__)."\\";
-        $this->root_path = $this->base.'/'.$this->root_path;
+        $this->root_path = SHAM_PATH."\\".$this->root_path;
 //        $this->cls_mysql($config['dbhost'], $config['dbuser'], $config['dbpw'], $config['dbname'], $config['charset'], $config['pconnect'], $config['quiet']);
         $this->cls_mysql(
             $mysql_set[$chr]['hostname'],

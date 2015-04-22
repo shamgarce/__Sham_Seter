@@ -28,7 +28,7 @@
 
 ------------------------------------------------------------------------------* /
  */
-class Logmon{
+class Sham_Logmon{
 
 
     protected $errors = array();
